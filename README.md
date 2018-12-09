@@ -130,6 +130,12 @@ Setup the database:
 docker-compose run --rm web mix ecto.migrate
 ```
 
+Get your web push keys and copy them to `secret.exs`:
+
+```
+docker-compose run --rm web mix web_push.gen.keypair
+```
+
 You can now launch your instance:
 
 ```sh
