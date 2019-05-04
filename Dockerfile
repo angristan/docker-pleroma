@@ -26,7 +26,6 @@ RUN mix local.rebar --force \
     && mix deps.get \
     && mix compile
 
-RUN mkdir /pleroma/uploads
 VOLUME /pleroma/uploads/
 
 CMD ["mix", "phx.server"]
