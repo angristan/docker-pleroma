@@ -122,7 +122,7 @@ docker-compose build
 docker build -t pleroma .
 ```
 
-I prefer the later because it's more verbose.
+I prefer the latter because it's more verbose.
 
 Setup the database:
 
@@ -134,6 +134,14 @@ Get your web push keys and copy them to `secret.exs`:
 
 ```
 docker-compose run --rm web mix web_push.gen.keypair
+```
+
+You will need to build the image again, to pick up your updated `secret.exs` file:
+
+```
+docker-compose build
+# or
+docker build -t pleroma .
 ```
 
 You can now launch your instance:
