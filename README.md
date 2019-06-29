@@ -82,6 +82,7 @@ Configure Pleroma. Copy the following to `config/secret.exs`:
 use Mix.Config
 
 config :pleroma, Pleroma.Web.Endpoint,
+   http: [ ip: {0, 0, 0, 0}, ],
    url: [host: "pleroma.domain.tld", scheme: "https", port: 443],
    secret_key_base: "<use 'openssl rand -base64 48' to generate a key>"
 
