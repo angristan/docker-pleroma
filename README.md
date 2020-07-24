@@ -8,7 +8,7 @@ Its main advantages are its lightness and speed.
 
 ![Pleroma](https://i.imgur.com/VftiTlR.png)
 
-*Pleromians trying to understand the memes*
+_Pleromians trying to understand the memes_
 
 ## Features
 
@@ -54,7 +54,7 @@ services:
     container_name: pleroma_web
     restart: always
     ports:
-      - "127.0.0.1:4000:4000"
+      - '127.0.0.1:4000:4000'
     volumes:
       - ./uploads:/pleroma/uploads
     depends_on:
@@ -177,7 +177,9 @@ docker-compose up -d # recreate the containers if needed
 If you want to run a specific commit, you can use the `PLEROMA_VER` variable:
 
 ```sh
-docker build -t pleroma . --build-arg PLEROMA_VER=a9203ab3
+docker build -t pleroma . --build-arg PLEROMA_VER=develop # a branch
+docker build -t pleroma . --build-arg PLEROMA_VER=a9203ab3 # a commit
+docker build -t pleroma . --build-arg PLEROMA_VER=v2.0.7 # a version
 ```
 
 `a9203ab3` being the hash of the commit. (They're [here](https://git.pleroma.social/pleroma/pleroma/commits/develop))
