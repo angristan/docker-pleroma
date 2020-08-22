@@ -8,6 +8,7 @@ ARG PLEROMA_VER=develop
 RUN apk -U upgrade \
     && apk add --no-cache \
     build-base \
+    cmake \
     git
 
 RUN addgroup -g ${GID} pleroma \
