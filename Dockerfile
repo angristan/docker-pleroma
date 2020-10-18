@@ -9,7 +9,8 @@ RUN apk -U upgrade \
     && apk add --no-cache \
     build-base \
     cmake \
-    git
+    git \
+    file-dev
 
 RUN addgroup -g ${GID} pleroma \
     && adduser -h /pleroma -s /bin/sh -D -G pleroma -u ${UID} pleroma
