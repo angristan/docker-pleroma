@@ -1,0 +1,35 @@
+version: '2.3'
+
+services:
+  db:
+    image: postgres:12.1-alpine
+    container_name: pleroma_db
+    restart: always
+    environment:
+      POSTGRES_USER: pleroma
+      POSTGRES_PASSWORD: ChangeMe!
+      POSTGRES_DB: pleroma
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  web:
+    build: .
+    image: pleroma
+    container_name: pleroma_web
+    restart: always
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./uploads:/pleroma/uploads
+      - ./static:/pleroma/static
+      - ./config.exs:/etc/pleroma/config.exs
+    environment:
+      DOMAIN: exmaple.com
+      INSTANCE_NAME: Pleroma
+      ADMIN_EMAIL: admin@example.com
+      NOTIFY_EMAIL: notify@example.com
+      DB_USER: pleroma
+      DB_PASS: ChangeMe!
+      DB_NAME: pleroma
+    depends_on:
+      - db
