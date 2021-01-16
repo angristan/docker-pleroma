@@ -1,4 +1,4 @@
-version: '2.3'
+version: '3.8'
 
 services:
   db:
@@ -20,9 +20,9 @@ services:
     ports:
       - '4000:4000'
     volumes:
-      - ./uploads:/pleroma/uploads
-      - ./static:/pleroma/static
-      - ./config.exs:/etc/pleroma/config.exs
+      - ./uploads:/var/lib/pleroma/uploads
+      - ./static:/var/lib/pleroma/static
+      - ./config.exs:/etc/pleroma/config.exs:ro
     environment:
       DOMAIN: exmaple.com
       INSTANCE_NAME: Pleroma
