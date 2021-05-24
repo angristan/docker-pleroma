@@ -1,4 +1,4 @@
-FROM elixir:1.11.4-alpine
+FROM elixir:1.12.0-alpine
 
 ENV UID=911 GID=911 \
     MIX_ENV=prod
