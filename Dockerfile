@@ -30,4 +30,6 @@ RUN mix local.rebar --force \
 
 VOLUME /pleroma/uploads/
 
+RUN chown -R pleroma:pleroma ./
+
 CMD ["mix", "phx.server"]
