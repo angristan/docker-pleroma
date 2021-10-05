@@ -1,4 +1,7 @@
-FROM elixir:1.11-alpine
+FROM elixir:1.11.4-alpine
+
+ENV UID=911 GID=911 \
+    MIX_ENV=prod
 
 ARG PLEROMA_VER=develop
 ENV UID=911 GID=911 MIX_ENV=prod

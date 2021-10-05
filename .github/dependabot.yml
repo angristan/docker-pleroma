@@ -1,18 +1,10 @@
 version: 2
 updates:
-- package-ecosystem: docker
+- package-ecosystem: "docker"
   directory: "/"
   schedule:
-    interval: daily
-  assignees:
-    - "angristan"
-  reviewers:
-    - "angristan"
+    interval: "monthly"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
-    interval: "daily"
-  assignees:
-    - "angristan"
-  reviewers:
-    - "angristan"
+    interval: "monthly"
