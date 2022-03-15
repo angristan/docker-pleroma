@@ -34,16 +34,16 @@ Create a folder for your Pleroma instance. Inside, you should have `Dockerfile` 
 Here is the `docker-compose.yml`. You should change the `POSTGRES_PASSWORD` variable.
 
 ```yaml
-version: '2.3'
+version: '3.8'
 
 services:
-  postgres:
-    image: postgres:9.6-alpine
-    container_name: pleroma_postgres
+  db:
+    image: postgres:12.1-alpine
+    container_name: pleroma_db
     restart: always
     environment:
       POSTGRES_USER: pleroma
-      POSTGRES_PASSWORD: pleroma
+      POSTGRES_PASSWORD: ChangeMe!
       POSTGRES_DB: pleroma
     volumes:
       - ./postgres:/var/lib/postgresql/data
@@ -54,11 +54,21 @@ services:
     container_name: pleroma_web
     restart: always
     ports:
-      - '127.0.0.1:4000:4000'
+      - '4000:4000'
     volumes:
-      - ./uploads:/pleroma/uploads
+      - ./uploads:/var/lib/pleroma/uploads
+      - ./static:/var/lib/pleroma/static
+      - ./config.exs:/etc/pleroma/config.exs:ro
+    environment:
+      DOMAIN: exmaple.com
+      INSTANCE_NAME: Pleroma
+      ADMIN_EMAIL: admin@example.com
+      NOTIFY_EMAIL: notify@example.com
+      DB_USER: pleroma
+      DB_PASS: ChangeMe!
+      DB_NAME: pleroma
     depends_on:
-      - postgres
+      - db
 ```
 
 Create the upload and config folder and give write permissions for the uploads:
@@ -71,8 +81,8 @@ chown -R 911:911 uploads
 Pleroma needs the `citext` PostgreSQL extension, here is how to add it:
 
 ```sh
-docker-compose up -d postgres
-docker exec -i pleroma_postgres psql -U pleroma -c "CREATE EXTENSION IF NOT EXISTS citext;"
+docker-compose up -d db
+docker exec -i pleroma_db psql -U pleroma -c "CREATE EXTENSION IF NOT EXISTS citext;"
 docker-compose down
 ```
 
@@ -155,6 +165,12 @@ Check if everything went well with:
 
 ```sh
 docker logs -f pleroma_web
+```
+
+Make a new admin user using docker exec (replace fakeadmin with any username you'd like):
+
+```sh
+docker exec -it pleroma_web sh ./bin/pleroma_ctl user new fakeadmin admin@test.net --admin
 ```
 
 You can now setup a Nginx reverse proxy in a container or on your host by using the [example Nginx config](https://git.pleroma.social/pleroma/pleroma/blob/develop/installation/pleroma.nginx).
