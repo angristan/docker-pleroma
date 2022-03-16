@@ -1,12 +1,9 @@
 FROM elixir:1.11.4-alpine
 
-ENV UID=911 GID=911 \
-    MIX_ENV=prod
-
 ARG PLEROMA_VER=develop
+ARG UID=911
+ARG GID=911
 ENV UID=911 GID=911 MIX_ENV=prod
-
-ENV MIX_ENV=prod
 
 RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories \
     && apk update \
