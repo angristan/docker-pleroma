@@ -49,12 +49,19 @@ services:
       - ./postgres:/var/lib/postgresql/data
 
   web:
-    build: .
     image: pleroma
     container_name: pleroma_web
     restart: always
     ports:
       - '4000:4000'
+    build:
+      context: .
+      # Feel free to remove or override this section
+      # See 'Build-time variables' in README.md
+      args:
+        - "UID=911"
+        - "GID=911"
+        - "PLEROMA_VER=develop"
     volumes:
       - ./uploads:/var/lib/pleroma/uploads
       - ./static:/var/lib/pleroma/static
@@ -97,7 +104,7 @@ docker-compose build
 docker build -t pleroma .
 ```
 
-I prefer the latter because it's more verbose.
+I prefer the latter because it's more verbose but this will ignore any build-time variables you have set in `docker-compose.yml`.
 
 You can now launch your instance:
 
@@ -144,10 +151,13 @@ docker build -t pleroma . --build-arg PLEROMA_VER=v2.0.7 # a version
 
 `a9203ab3` being the hash of the commit. (They're [here](https://git.pleroma.social/pleroma/pleroma/commits/develop))
 
+This value can also be set through `docker-compose.yml` as seen in the example file provided in this repository.
+
 ## Config Override
 By default the provided `docker-compose.yml` file mounts `config.exs` in the Pleroma container, this file is a dynamic configuration that sources some values from the environment variables provided to the container (variables like `ADMIN_EMAIL` etc.).
 
 For those that want to change configuration that is not exposed through environment variables there is the option to mount the `config-override.exs` file which can than be modified to your satisfaction. Values set in this file will override anything set in `config.exs`. The override file provided in this repository disables new registrations on your instance, as an example.
+=======
 
 ## Other Docker images
 
