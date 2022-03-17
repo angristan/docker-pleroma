@@ -62,7 +62,7 @@ services:
       # optional, see 'Config Override' section in README.md
       # - ./config-override.exs:/var/lib/pleroma/config.exs:ro
     environment:
-      DOMAIN: exmaple.com
+      DOMAIN: example.com
       INSTANCE_NAME: Pleroma
       ADMIN_EMAIL: admin@example.com
       NOTIFY_EMAIL: notify@example.com
