@@ -140,7 +140,7 @@ docker-compose build
 docker build -t pleroma .
 ```
 
-I prefer the latter because it's more verbose.
+I prefer the latter because it's more verbose but this will ignore any build-time variables you have set in `docker-compose.yml`.
 
 Setup the database:
 

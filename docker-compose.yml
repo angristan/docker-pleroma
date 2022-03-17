@@ -23,9 +23,9 @@ services:
       # Feel free to remove or override this section
       # See 'Build-time variables' in README.md
       args:
-        - "UID=911"
-        - "GID=911"
-        - "PLEROMA_VER=develop"
+        - "UID=1000"
+        - "GID=1000"
+        - "PLEROMA_VER=v2.4.2"
     volumes:
       - ./uploads:/var/lib/pleroma/uploads
       - ./static:/var/lib/pleroma/static
