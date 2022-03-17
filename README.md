@@ -49,12 +49,19 @@ services:
       - ./postgres:/var/lib/postgresql/data
 
   web:
-    build: .
     image: pleroma
     container_name: pleroma_web
     restart: always
     ports:
       - '4000:4000'
+    build:
+      context: .
+      # Feel free to remove or override this section
+      # See 'Build-time variables' in README.md
+      args:
+        - "UID=911"
+        - "GID=911"
+        - "PLEROMA_VER=develop"
     volumes:
       - ./uploads:/var/lib/pleroma/uploads
       - ./static:/var/lib/pleroma/static
@@ -133,7 +140,7 @@ docker-compose build
 docker build -t pleroma .
 ```
 
-I prefer the latter because it's more verbose.
+I prefer the latter because it's more verbose but this will ignore any build-time variables you have set in `docker-compose.yml`.
 
 Setup the database:
 
@@ -199,6 +206,8 @@ docker build -t pleroma . --build-arg PLEROMA_VER=v2.0.7 # a version
 ```
 
 `a9203ab3` being the hash of the commit. (They're [here](https://git.pleroma.social/pleroma/pleroma/commits/develop))
+
+This value can also be set through `docker-compose.yml` as seen in the example file provided in this repository.
 
 ## Other Docker images
 
