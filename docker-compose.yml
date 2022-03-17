@@ -5,6 +5,8 @@ services:
     image: postgres:12.1-alpine
     container_name: pleroma_db
     restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "pleroma"]
     environment:
       POSTGRES_USER: pleroma
       POSTGRES_PASSWORD: ChangeMe!
@@ -16,6 +18,12 @@ services:
     build: .
     image: pleroma
     container_name: pleroma_web
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -q --spider --proxy=off localhost:4000 || exit 1",
+        ]
     restart: always
     ports:
       - '4000:4000'
