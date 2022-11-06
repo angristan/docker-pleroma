@@ -39,7 +39,7 @@ services:
       - ./static:/var/lib/pleroma/static
       - ./config.exs:/etc/pleroma/config.exs:ro
     environment:
-      DOMAIN: exmaple.com
+      DOMAIN: example.com
       INSTANCE_NAME: Pleroma
       ADMIN_EMAIL: admin@example.com
       NOTIFY_EMAIL: notify@example.com
