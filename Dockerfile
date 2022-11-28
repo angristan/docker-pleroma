@@ -5,7 +5,7 @@ ARG UID=911
 ARG GID=911
 ENV MIX_ENV=prod
 
-RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories \
+RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
     && apk update \
     && apk add git gcc g++ musl-dev make cmake file-dev \
     exiftool imagemagick libmagic ncurses postgresql-client ffmpeg
