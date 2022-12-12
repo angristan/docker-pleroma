@@ -9,10 +9,10 @@ services:
       test: ["CMD", "pg_isready", "-U", "pleroma"]
     environment:
       POSTGRES_USER: pleroma
-      POSTGRES_PASSWORD: ChangeMe!
+      POSTGRES_PASSWORD: fhJTdQGtiawUe7JuiY
       POSTGRES_DB: pleroma
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ~/data/postgres:/var/lib/postgresql/data
 
   web:
     image: pleroma
@@ -31,20 +31,20 @@ services:
       # Feel free to remove or override this section
       # See 'Build-time variables' in README.md
       args:
-        - "UID=1000"
-        - "GID=1000"
+        - "UID=1001"
+        - "GID=1001"
         - "PLEROMA_VER=v2.4.2"
     volumes:
-      - ./uploads:/var/lib/pleroma/uploads
-      - ./static:/var/lib/pleroma/static
-      - ./config.exs:/etc/pleroma/config.exs:ro
+      - ~/data/uploads:/var/lib/pleroma/uploads
+      - ~/data/static:/var/lib/pleroma/static
+      - ~/data/config:/etc/pleroma/config.exs:ro
     environment:
-      DOMAIN: example.com
+      DOMAIN: myprivate.social
       INSTANCE_NAME: Pleroma
-      ADMIN_EMAIL: admin@example.com
-      NOTIFY_EMAIL: notify@example.com
+      ADMIN_EMAIL: chris@chrisdeluca.com
+      NOTIFY_EMAIL: notify@chrisdeluca.com
       DB_USER: pleroma
-      DB_PASS: ChangeMe!
+      DB_PASS: fhJTdQGtiawUe7JuiY
       DB_NAME: pleroma
     depends_on:
       - db
