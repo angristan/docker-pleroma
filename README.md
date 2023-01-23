@@ -34,7 +34,7 @@ Create a folder for your Pleroma instance. Inside, you should have `Dockerfile` 
 Here is the `docker-compose.yml`. You should change the `POSTGRES_PASSWORD` variable.
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -53,7 +53,7 @@ services:
     container_name: pleroma_web
     restart: always
     ports:
-      - '4000:4000'
+      - "4000:4000"
     build:
       context: .
       # Feel free to remove or override this section
@@ -154,10 +154,10 @@ docker build -t pleroma . --build-arg PLEROMA_VER=v2.0.7 # a version
 This value can also be set through `docker-compose.yml` as seen in the example file provided in this repository.
 
 ## Config Override
+
 By default the provided `docker-compose.yml` file mounts `config.exs` in the Pleroma container, this file is a dynamic configuration that sources some values from the environment variables provided to the container (variables like `ADMIN_EMAIL` etc.).
 
 For those that want to change configuration that is not exposed through environment variables there is the option to mount the `config-override.exs` file which can than be modified to your satisfaction. Values set in this file will override anything set in `config.exs`. The override file provided in this repository disables new registrations on your instance, as an example.
-=======
 
 ## Other Docker images
 
