@@ -134,9 +134,9 @@ Thus to update, just rebuild your image and recreate your containers:
 
 ```sh
 docker-compose pull # update the PostgreSQL if needed
-docker-compose build .
+docker-compose build --no-cache .
 # or
-docker build -t pleroma .
+docker build --no-cache -t pleroma .
 docker-compose run --rm web mix ecto.migrate # migrate the database if needed
 docker-compose up -d # recreate the containers if needed
 ```
