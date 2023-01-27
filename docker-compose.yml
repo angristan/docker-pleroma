@@ -9,7 +9,7 @@ services:
       test: ["CMD", "pg_isready", "-U", "pleroma"]
     environment:
       POSTGRES_USER: pleroma
-      POSTGRES_PASSWORD: fhJTdQGtiawUe7JuiY
+      POSTGRES_PASSWORD: ${postgres}
       POSTGRES_DB: pleroma
     volumes:
       - ~/data/postgres:/var/lib/postgresql/data
@@ -41,10 +41,10 @@ services:
     environment:
       DOMAIN: myprivate.social
       INSTANCE_NAME: Pleroma
-      ADMIN_EMAIL: chris@chrisdeluca.com
-      NOTIFY_EMAIL: notify@chrisdeluca.com
+      ADMIN_EMAIL: ${admin-email}
+      NOTIFY_EMAIL: ${notify-email}
       DB_USER: pleroma
-      DB_PASS: fhJTdQGtiawUe7JuiY
+      DB_PASS: ${postgres}
       DB_NAME: pleroma
     depends_on:
       - db
