@@ -24,7 +24,7 @@ USER pleroma
 WORKDIR /pleroma
 
 RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma \
-    && git checkout ${PLEROMA_VER} 
+    && git checkout $(git tag --contains | tail -1) 
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mix local.hex --force \
