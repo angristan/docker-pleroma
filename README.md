@@ -84,7 +84,7 @@ Create the upload and config folder and give write permissions for the uploads:
 
 ```sh
 mkdir uploads config
-chown -R 911:911 uploads
+chown -R 1000:1000 uploads
 ```
 
 Pleroma needs the `citext` PostgreSQL extension, here is how to add it:
