@@ -1,8 +1,8 @@
 FROM elixir:1.11.4-alpine
 
 ARG PLEROMA_VER=develop
-ARG UID=911
-ARG GID=911
+ARG UID=1000
+ARG GID=1000
 ENV MIX_ENV=prod
 
 RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
@@ -18,7 +18,10 @@ RUN mkdir -p /etc/pleroma \
     && chown -R pleroma /etc/pleroma \
     && mkdir -p ${DATA}/uploads \
     && mkdir -p ${DATA}/static \
-    && chown -R pleroma ${DATA}
+    && chown -R pleroma ${DATA} \
+    && chown -R pleroma /var \
+    && chown -R pleroma /tmp
+
 
 USER pleroma
 WORKDIR /pleroma
