@@ -1,4 +1,4 @@
-FROM elixir:1.11.4-alpine
+FROM elixir:1.14-alpine
 
 ARG PLEROMA_VER=develop
 ARG UID=911
@@ -24,7 +24,7 @@ USER pleroma
 WORKDIR /pleroma
 
 RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma \
-    && git checkout ${PLEROMA_VER} 
+    && git checkout ${PLEROMA_VER}
 
 RUN echo "import Mix.Config" > config/prod.secret.exs \
     && mix local.hex --force \
