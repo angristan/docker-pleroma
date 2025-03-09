@@ -3,12 +3,14 @@ FROM elixir:1.14-alpine
 ARG PLEROMA_VER=develop
 ARG UID=911
 ARG GID=911
+
 ENV MIX_ENV=prod
+ENV VIX_COMPILATION_MODE=PLATFORM_PROVIDED_LIBVIPS
 
 RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
     && apk update \
-    && apk add git gcc g++ musl-dev make cmake file-dev \
-    exiftool imagemagick libmagic ncurses postgresql-client ffmpeg \
+    && apk add git gcc g++ musl-dev make cmake file-dev vips-dev \
+    exiftool imagemagick vips libmagic ncurses postgresql-client ffmpeg \
     openssl-dev
 
 RUN addgroup -g ${GID} pleroma \
