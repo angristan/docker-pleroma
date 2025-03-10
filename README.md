@@ -84,7 +84,10 @@ Create the upload and config folder and give write permissions for the uploads:
 
 ```sh
 mkdir uploads config
-chown -R 911:911 uploads
+chown -R 1000:1000 uploads
+docker exec -it --user root pleroma_web sh
+chown -R pleroma /var
+chown -R pleroma /tmp
 ```
 
 Pleroma needs the `citext` PostgreSQL extension, here is how to add it:
